@@ -15,16 +15,21 @@
   class OFSConnector{
 
     /**
+     * An array of channels: default and custom
+     * @var $_channel
+     */
+    private static $_channel = array();
+    /**
      * Holds a persistent SoapClient instance
      * @var $_soap_client
      */
-    private static $_soap_client      = null;
+    private static $_soap_client = null;
 
     /**
      * Holds the actual webservice link
      * @var $_web_service_url
      */
-    private static $_web_service_url  = null;
+    private static $_web_service_url = null;
 
     /**
      * Connects to the remote T24/Globus server and keeps a persistent connection
