@@ -19,6 +19,7 @@
      * @var $_soap_client
      */
     private static $_soap_client      = null;
+
     /**
      * Holds the actual webservice link
      * @var $_web_service_url
