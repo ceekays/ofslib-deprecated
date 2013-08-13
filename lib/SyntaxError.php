@@ -14,7 +14,10 @@
  ******************************************************************************/
 
   class SyntaxError{
-
+    const CONNECTION_FAILURE      = "Unable to connect. Error: '%s'";
+    const SOAPFAULT_EXCEPTION     = "Unable to execute your OFS Request. Reason: '%s'";
+    const UNDEFINED_CHANNEL       = "Channel is undefined.";
+    const UNDEFINED_WEBSERVICE    = "Undefined endpoint webservice link.";
   }
 ?>
 
