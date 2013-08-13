@@ -75,6 +75,7 @@
 
     /**
      * Sets the default OFS channel
+     *
      * @param  string $channel the name of the OFS channel that will be used
      * @return void
      *
@@ -85,6 +86,7 @@
 
     /**
      * Sets the custom OFS channel
+     *
      * @param  string $channel the name of the custom OFS channel
      * @return void
      *
@@ -95,6 +97,7 @@
 
     /**
      * Executes given OFS message
+     *
      * @param  string $request the OFS request message
      * @return object $this
      *
@@ -120,6 +123,7 @@
 
     /**
      * Executes a given OFS message via a specified channel
+     *
      * @param   string $request the OFS request message
      * @param   string  $channel_to_use actual to use
      * @return object $this
@@ -150,6 +154,7 @@
 
     /**
      * Checks whether the current OFS instance has a custom channel
+     *
      * @return boolean $has_channel
      *
      */
@@ -166,6 +171,7 @@
 
     /**
      * Returns a default OFS channel
+     *
      * @returns self::$_channel['default']
      */
     protected function get_default_channel(){
@@ -174,6 +180,7 @@
 
     /**
      * Returns a custom OFS channel
+     *
      * @returns self::$_channel['custom']
      */
     protected function get_custom_channel(){
@@ -182,6 +189,7 @@
 
     /**
      * Sends the OFS message to the remote T24/Globus server
+     *
      * @returns void
      */
     private function send_ofs($channel_to_use){
@@ -210,6 +218,7 @@
 
     /**
      * Retrieves an OFS response
+     *
      * @returns $this->_response
      */
     protected function get_response(){
