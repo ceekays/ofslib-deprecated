@@ -1,0 +1,8 @@
+.DS_Store
+*.swp
+*.swo
+notes
+doc
+*~
+nbproject
+index.php
