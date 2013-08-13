@@ -13,7 +13,7 @@
  *                                                                            *
  ******************************************************************************/
 
-  class OFSException extends Exception {
+  class OFSException extends Exception{
 
     /**
      * Holds the actual exception message
@@ -53,6 +53,39 @@
       static::$message .= $line;
 
       OFSException::callStack();
+    }
+
+    /**
+     *  print a neat callstack
+     *
+     *  Credit: Don Briggs
+     *  http://stackoverflow.com/questions/1423157/print-php-call-stack
+     */
+    private static function callStack(){
+      $exception_template = "%s <b> %s </b>: %s () line %s <br/>";
+
+      echo "<pre>";
+      echo static::$message ."<br/>";
+      echo str_repeat("_", 120)."<br/><br/>";
+
+      $i = 1;
+      foreach(static::$stacktrace as $node){
+        if(isset($node['file'])){
+          $exception = sprintf(
+            $exception_template,
+            $i,
+            basename($node['file']),
+            $node['function'],
+            $node['line']
+          );
+
+          echo $exception;
+          $i++;
+        }
+      }
+
+      echo "</pre>";
+      exit;
     }
   }
 ?>
