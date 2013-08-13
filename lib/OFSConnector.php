@@ -19,6 +19,7 @@
      * @var $_channel
      */
     private static $_channel = array();
+
     /**
      * Holds a persistent SoapClient instance
      * @var $_soap_client
