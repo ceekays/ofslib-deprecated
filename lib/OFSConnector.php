@@ -14,7 +14,15 @@
  ******************************************************************************/
   class OFSConnector{
 
+    /**
+     * Holds a persistent SoapClient instance
+     * @var $_soap_client
+     */
     private static $_soap_client      = null;
+    /**
+     * Holds the actual webservice link
+     * @var $_web_service_url
+     */
     private static $_web_service_url  = null;
 
     /**
