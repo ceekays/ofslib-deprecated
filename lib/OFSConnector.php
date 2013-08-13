@@ -119,6 +119,36 @@
     }
 
     /**
+     * Executes a given OFS message via a specified channel
+     * @param   string $request the OFS request message
+     * @param   string  $channel_to_use actual to use
+     * @return object $this
+     *
+     */
+    protected function execute_ofs_by_channel($request, $channel_to_use){
+      $channel          = null;
+      $this->_response  = null;
+      $this->_request   = $request;
+
+      if(empty($channel_to_use))
+        throw new OFSException(SyntaxError::UNDEFINED_CHANNEL);
+
+      if($channel_to_use == OFSConnector::DEFAULT_CHANNEL){
+        $channel = $this->get_default_channel();
+      }
+      elseif($channel_to_use == OFSConnector::CUSTOM_CHANNEL){
+        $channel = $this->get_custom_channel();
+      }
+      else{
+        $channel = $channel_to_use;
+      }
+
+      $this->send_ofs($channel);
+
+      return $this;
+    }
+
+    /**
      * Checks whether the current OFS instance has a custom channel
      * @return boolean $has_channel
      *
