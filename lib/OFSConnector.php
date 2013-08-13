@@ -207,6 +207,14 @@
         );
       }
     }
+
+    /**
+     * Retrieves an OFS response
+     * @returns $this->_response
+     */
+    protected function get_response(){
+      return $this->_response;
+    }
   }
 ?>
 
