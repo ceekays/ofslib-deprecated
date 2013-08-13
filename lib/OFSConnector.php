@@ -54,6 +54,16 @@
         );
       }
     }
+
+    /**
+     * Sets the default OFS channel
+     * @param  string $ofs_source the name of the OFS channel that will be used
+     * @return
+     *
+     */
+    public static function set_default_channel($channel){
+      self::$_channel['default'] = $channel;
+    }
   }
 ?>
 
