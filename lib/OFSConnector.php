@@ -84,6 +84,16 @@
     }
 
     /**
+     * Sets the custom OFS channel
+     * @param  string $channel the name of the custom OFS channel
+     * @return void
+     *
+     */
+    public static function set_custom_channel($channel){
+      self::$_channel['custom'] = $channel;
+    }
+
+    /**
      * Executes given OFS message
      * @param  string $request the OFS request message
      * @return object $this
