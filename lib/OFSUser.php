@@ -186,6 +186,42 @@
         throw new OFSException(SyntaxError::UNKNOWN_FIELDS, $option);
       }
     }
+
+    /**
+     * Sets a given property to default user properties
+     *
+     * @param string  $option the name of the property
+     * @param mixed   $values the actual values
+     *
+     */
+    private function set_instance_options($option, $values){
+
+      if($option == 'information'){
+        if(!is_hash($value)){
+          throw new OFSException(SyntaxError::WRONG_DATA, 'a hash');
+        }
+
+        $array_keys = array_keys($values);
+        $array_diff = array_diff($array_keys, self::$options_list);
+
+        if(!empty($array_diff)){
+          throw new OFSException(
+            SyntaxError::UNKNOWN_FIELDS,
+            join(',', $array_diff)
+          );
+        }
+
+        foreach($values as $key => $data){
+          $this->_locals[$key]  = $data;
+        }
+      }
+      elseif(in_array($option, self::$options_list)){
+        $this->_locals[$option] = $values;
+      }
+      else{
+        throw new OFSException(SyntaxError::UNKNOWN_FIELDS, $option);
+      }
+    }
   }
 ?>
 
