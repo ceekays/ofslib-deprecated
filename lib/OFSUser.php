@@ -44,9 +44,9 @@
      * @var $_options_list
      */
     private static $_options_list = array(
-      'company',
-      'password',
-      'username'
+      OFSUser::COMPANY  => 'company',
+      OFSUser::PASSWORD => 'password',
+      OFSUser::USERNAME =>'username'
     );
 
     /**
@@ -92,12 +92,12 @@
       $values = array();
 
       if($option == 'information'){
-          foreach(self::$_options_list as $option){
-            if(isset(self::$_defaults[$option])){
-              $values[$option] = self::$_defaults[$option];
+          foreach(self::$_options_list as $key){
+            if(isset(self::$_defaults[$key])){
+              $values[$key] = self::$_defaults[$key];
             }
             else{
-              $values[$option] = null;
+              $values[$key] = null;
             }
           }
         }
@@ -110,7 +110,7 @@
         $values = null;
       }
       else{
-        throw new OFSException(SyntaxError::UNDEFINED_FIELD, $option);
+        throw new OFSException(SyntaxError::UNDEFINED_FIELD, 'default_'.$option);
       }
 
       return $values;
@@ -123,16 +123,16 @@
      * @return  mixed   $values
      *
      */
-    private function get_instance_values($option){
+    private function get_instance_options($option){
       $values = array();
 
       if($option == 'information'){
-          foreach(self::$options_list as $option){
-            if(isset($this->_locals[$option])){
-              $values[$option] = $this->_locals[$option];
+          foreach(self::$_options_list as $key){
+            if(isset($this->_locals[$key])){
+              $values[$key] = $this->_locals[$key];
             }
             else{
-              $values[$option] = null;
+              $values[$key] = null;
             }
           }
         }
@@ -141,7 +141,7 @@
       ){
         $values = $this->_locals[$option];
       }
-      elseif(in_array($option, self::$options_list)){
+      elseif(in_array($option, self::$_options_list)){
         $values = null;
       }
       else{
@@ -165,8 +165,10 @@
           throw new OFSException(SyntaxError::WRONG_DATA, 'a hash');
         }
 
-        $array_keys = array_keys($values);
-        $array_diff = array_diff($array_keys, self::$options_list);
+        $array_diff = array_diff(
+          array_keys($values),
+          array_keys(self::$_options_list)
+        );
 
         if(!empty($array_diff)){
           throw new OFSException(
@@ -176,11 +178,12 @@
         }
 
         foreach($values as $key => $data){
-          self::$_defaults[$key] = $data;
+          self::$_defaults[self::$_options_list[$key]] = $data;
         }
       }
-      elseif(in_array($option, self::$options_list)){
+      elseif(in_array($option, array_values(self::$_options_list))){
         self::$_defaults[$option] = $values;
+
       }
       else{
         throw new OFSException(SyntaxError::UNKNOWN_FIELDS, $option);
@@ -197,12 +200,14 @@
     private function set_instance_options($option, $values){
 
       if($option == 'information'){
-        if(!is_hash($value)){
+        if(!is_hash($values)){
           throw new OFSException(SyntaxError::WRONG_DATA, 'a hash');
         }
 
-        $array_keys = array_keys($values);
-        $array_diff = array_diff($array_keys, self::$options_list);
+        $array_diff = array_diff(
+          array_keys($values),
+          array_keys(self::$_options_list)
+        );
 
         if(!empty($array_diff)){
           throw new OFSException(
@@ -212,10 +217,10 @@
         }
 
         foreach($values as $key => $data){
-          $this->_locals[$key]  = $data;
+          $this->_locals[self::$_options_list[$key]]  = $data;
         }
       }
-      elseif(in_array($option, self::$options_list)){
+      elseif(in_array($option, self::$_options_list)){
         $this->_locals[$option] = $values;
       }
       else{
