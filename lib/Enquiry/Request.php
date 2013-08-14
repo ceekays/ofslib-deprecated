@@ -119,6 +119,29 @@
         break;
       }
     }
+
+      /**
+       * Creates an enquiry request message in the form:
+       * ENQUIRY.SELECT,,USERNAME/PASSWORD/COMPANY,ENQUIRY.NAME,FIELD:OPERAND=DATA
+       *
+       * @returns $this object
+       *
+       */
+    public function to_ofs() {
+      $enquiry_request_template = "%s,,%s,%s,%s";
+
+      $enquiry_request = sprintf(
+        $enquiry_request_template,
+        $this->_operation,
+        $this->user->__toString(),
+        $this->_name,
+        $this->fields->__toString()
+      );
+
+      $this->_request = $enquiry_request;
+
+      return $this;
+    }
   }
  ?>
 
