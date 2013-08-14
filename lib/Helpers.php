@@ -27,5 +27,25 @@
     exit;
   }
 
+  /**
+   * Find the last element in an array
+   * @param   $value
+   * @returns
+   *
+   */
+  function array_last(array $value){
+    $last_element = null;
+
+    if(!is_array($value)) return $last_element;
+    if(sizeof($value) < 1) return $last_element;
+
+    $keys = array_keys($array_value);
+    $last = $keys[sizeof($keys) - 1];
+
+    $last_element = $value[$last];
+
+    return $last_element;
+  }
+
 ?>
 
