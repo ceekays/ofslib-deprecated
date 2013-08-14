@@ -51,7 +51,7 @@ class OFSOperator {
     public static function get_value($operator_type){
       $keys = array_keys(self::$_operators);
 
-      if(!in_array($operator_type, self::$_operators))
+      if(!in_array($operator_type, array_keys(self::$_operators)))
         throw new OFSException(SyntaxError::UNKNOWN_FIELDS, $operator_type);
 
       $operator = self::$_operators[$operator_type];
