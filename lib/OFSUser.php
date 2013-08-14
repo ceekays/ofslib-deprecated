@@ -252,6 +252,43 @@
     public function should_use_defaults(){
       return $this->_use_defaults;
     }
+
+    /**
+     * Creates an OFS user information string
+     *
+     * @returns $user_details
+     *
+     */
+    public function __toString(){
+      $user_details = null;
+      if($this->should_use_defaults()){
+        $user_details = sprintf(
+          "%s/%s/%s",
+          $this->default_username,
+          $this->default_password,
+          $this->default_company
+        );
+      }
+      else{
+        // localised options take higher precedence
+        if (null != $this->username) $username = $this->username;
+        else $username = $this->default_username;
+
+        if (null != $this->password) $password = $this->password;
+        else $password = $this->default_password;
+
+        if (null != $this->company) $company = $this->company;
+        else $company = $this->default_company;
+
+        $user_details = sprintf(
+          "%s/%s/%s",
+          $username,
+          $password,
+          $company
+        );
+      }
+      return $user_details;
+    }
   }
 ?>
 
