@@ -66,6 +66,20 @@
 
       return $values;
     }
+
+    /**
+     * Writes data to private user properties
+     *
+     * @param   string  $option the property name
+     * @param   mixed   $value the value being assigned
+     *
+     */
+    public function __set($option, $value){
+      if('default_' == substr($option, 0, 8))
+        $this->set_default_options(substr($option, 8), $value);
+      else
+        $this->set_instance_options($option, $value);
+    }
   }
 ?>
 
