@@ -42,6 +42,32 @@
 
       return $this;
     }
+
+    /**
+     * Creates a data content string
+     *
+     *  @returns string $data_string
+     *
+     */
+    public function __toString(){
+      $content_template = "%s:%s=%s,";
+      $data_string      = null;
+
+      foreach($this->_fields as $field){
+        $substring = sprintf(
+          $content_template,
+          $field[Enquiry::FIELD],
+          $field[Enquiry::OPERATOR],
+          $field[Enquiry::VALUE]
+        );
+
+        $data_string .= $substring;
+      }
+
+      $data_string = rtrim($data_string, ",");
+
+      return $data_string;
+    }
   }
 ?>
 
