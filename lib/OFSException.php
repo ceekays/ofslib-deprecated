@@ -17,26 +17,26 @@
 
     /**
      * Holds the actual exception message
-     * @var string
+     * @var string $exception
      */
-    static $message;
+    static $exception;
 
     /**
      * Holds the debug backtrace
-     * @var string
+     * @var string $stacktrace
      */
     static $stacktrace;
 
     /**
      * Creates an OFSException 
      *
-     * @param   string  $exception the actual exception message
+     * @param   string  $message the actual exception message
      * @param   string  $option An optional parameter that modifies the exception message
      * @return  OFSException object
      *
      */
-    public function OFSException($exception, $option=null){
-      parent::__construct($exception);
+    public function OFSException($message, $option=null){
+      parent::__construct($message);
 
       static::$stacktrace = debug_backtrace();
 
@@ -45,12 +45,12 @@
       $file = $last['file'];
       $line = $last['line'];
 
-      static::$message  = "<b>OFSException:</b> ";
-      static::$message .= sprintf($this->getMessage(), $option);
-      static::$message .= " in ";
-      static::$message .= $file;
-      static::$message .= " on line ";
-      static::$message .= $line;
+      static::$exception  = "<b>OFSException:</b> ";
+      static::$exception .= sprintf($this->getMessage(), $option);
+      static::$exception .= " in ";
+      static::$exception .= $file;
+      static::$exception .= " on line ";
+      static::$exception .= $line;
 
       OFSException::callStack();
     }
@@ -65,13 +65,13 @@
       $exception_template = "%s <b> %s </b>: %s () line %s <br/>";
 
       echo "<pre>";
-      echo static::$message ."<br/>";
+      echo static::$exception ."<br/>";
       echo str_repeat("_", 120)."<br/><br/>";
 
       $i = 1;
       foreach(static::$stacktrace as $node){
         if(isset($node['file'])){
-          $exception = sprintf(
+          $message = sprintf(
             $exception_template,
             $i,
             basename($node['file']),
@@ -79,7 +79,7 @@
             $node['line']
           );
 
-          echo $exception;
+          echo $message;
           $i++;
         }
       }

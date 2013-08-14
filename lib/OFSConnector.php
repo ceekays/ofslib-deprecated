@@ -161,7 +161,7 @@
     protected function has_custom_channel(){
       $has_channel = false;
 
-      if((isset(self::$_channel['custom']) && !empty(self::$_channel['custom']))
+      if((isset(self::$_channel['custom'])) && !empty(self::$_channel['custom']))
         $has_channel = true;
       else
         $has_channel = false;
