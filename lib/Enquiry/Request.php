@@ -61,7 +61,7 @@
      * @return  Enquiry_Request object
      *
      */
-    function Enquiry_Request(){
+    public function Enquiry_Request(){
       $this->fields   = new Enquiry_Field();
       $this->response = new Enquiry_Response();
       $this->user     = new OFSUser();
@@ -74,7 +74,7 @@
      * @return  mixed  $value
      *
      */
-    function __get($option){
+    public function __get($option){
       $value = null;
 
       if(!in_array($option, $this->_options_list))
@@ -101,7 +101,7 @@
      * @param mixed  $value
      *
      */
-    function __set($option, $value){
+    public function __set($option, $value){
       if(!in_array($option, $this->_options_list))
         throw new OFSException(SyntaxError::UNKNOWN_FIELDS, $option);
 
