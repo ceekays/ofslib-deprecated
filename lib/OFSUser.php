@@ -222,6 +222,20 @@
         throw new OFSException(SyntaxError::UNKNOWN_FIELDS, $option);
       }
     }
+
+    /**
+     * Turns on and off use of default user information
+     *
+     * @param boolean $flag true/false parameter
+     * @returns void
+     *
+     */
+    public function use_defaults($flag){
+      if(true == $flag || false == $flag)
+        $this->_use_defaults = $flag;
+      else
+        throw new OFSException(SyntaxError::WRONG_DATA, ' true or false');
+    }
   }
 ?>
 
