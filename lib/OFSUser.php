@@ -236,6 +236,17 @@
       else
         throw new OFSException(SyntaxError::WRONG_DATA, ' true or false');
     }
+
+
+    /**
+     * Checks whether to use default user information
+     *
+     * @returns $this->_use_defaults
+     *
+     */
+    public function should_use_defaults(){
+      return $this->_use_defaults;
+    }
   }
 ?>
 
