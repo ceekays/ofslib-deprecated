@@ -142,6 +142,20 @@
 
       return $this;
     }
+
+  /**
+   * Executes an enquiry request and sets the enquiry response
+   *
+   * @returns $this object
+   *
+   */
+    public function execute(){
+      $this->to_ofs();
+      parent::execute_ofs($this->_request);
+      $this->response->set_response($this->get_response());
+
+      return $this;
+    }
   }
  ?>
 
