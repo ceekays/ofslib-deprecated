@@ -13,7 +13,7 @@
  *                                                                            *
  ******************************************************************************/
 class OFSOperator {
-    /* 
+    /**
      * a list of OFSOperator types
      */
     const EQ  =	"d92d6b1a-a617-47b1-9b74-a5ede57720b3";
@@ -27,7 +27,7 @@ class OFSOperator {
     const RG  = "97585a7c-8c44-4541-82b6-e3bec0013e75";
     const UL  = "6c69ddcc-2ec2-4509-939d-88a6e453391c";
 
-    /* 
+    /**
      * a list of the actual operators
      */ 
     private static $_operators = array(
@@ -43,5 +43,19 @@ class OFSOperator {
       OFSOperator::UL  => "UL"
     );
 
+  /**
+   * Retrieves the value of an operator type
+   * @param $operator_type  a valid operator type defined in OFSOperator
+   * @returns $operator     an actual operator
+   */
+    public static function get_value($operator_type){
+      $keys = array_keys(self::$_operators);
+
+      if(!in_array($operator_type, self::$_operators))
+        throw new OFSException(SyntaxError::UNKNOWN_FIELDS, $operator_type);
+
+      $operator = self::$_operators[$operator_type];
+      return $operator;
+    }
 }
 ?>
