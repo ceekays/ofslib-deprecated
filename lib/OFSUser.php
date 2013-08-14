@@ -48,6 +48,24 @@
       'password',
       'username'
     );
+
+    /**
+     * Reads data from private user properties
+     *
+     * @param   string  $option the property being accessed
+     * @return  mixed   $values
+     *
+     */
+    public function __get($option){
+      $values = array();
+
+      if('default_' == substr($option, 0, 8))
+        $values = $this->get_default_options(substr($option, 8));
+      else
+        $values = $this->get_instance_options($option);
+
+      return $values;
+    }
   }
 ?>
 
