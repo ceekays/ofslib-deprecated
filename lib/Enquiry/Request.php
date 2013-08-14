@@ -26,6 +26,18 @@
     private $_request = null;
 
     /**
+     * Holds a list of fields that are forbidden from modifying
+     * @var $_forbidden_fields
+     */
+    private $_forbidden_fields = array('message', 'text');
+
+    /**
+     * Holds a list of accessible fields
+     * @var $_options_list
+     */
+    private $_options_list = array('name', 'message', 'text');
+
+    /**
      * Holds Enquiry_Field object
      * @var $fields
      */
@@ -80,6 +92,32 @@
       }
 
       return $value;
+    }
+
+    /**
+     * Writes data to private properties
+     *
+     * @param string $option the name of the property
+     * @param mixed  $value
+     *
+     */
+    function __set($option, $value){
+      if(!in_array($option, $this->_options_list))
+        throw new OFSException(SyntaxError::UNKNOWN_FIELDS, $option);
+
+      if(in_array($option, $this->_forbidden_fields))
+        throw new OFSException(SyntaxError::READONLY_FIELD, $option);
+
+      switch($option){
+        case 'name':
+          $this->_name = $value;
+        break;
+
+        case    'text':
+        case 'message':
+          $this->_request = $value;
+        break;
+      }
     }
   }
  ?>
