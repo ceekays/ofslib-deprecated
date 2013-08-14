@@ -29,8 +29,8 @@
 
   /**
    * Find the last element in an array
-   * @param   $value
-   * @returns
+   * @param   array $value  the array parameter
+   * @returns mixed $last_element
    *
    */
   function array_last(array $value){
