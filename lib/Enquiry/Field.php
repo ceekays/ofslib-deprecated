@@ -15,10 +15,24 @@
   class Enquiry_Field {
 
     /**
+     *   data operation constants for enquiry field
+     *
+     */
+    const FIELD     = '557ce059-dcf5-40d7-959a-237e835187a9';
+    const OPERATOR  = 'e167e204-0be0-4dc1-b7aa-403e3489a56e';
+    const VALUE     = 'd9b04ddb-f613-4b75-bd0d-e38176746b13';
+
+    /**
      * Holds an enquiry field tuple
      * @var $_fields
      */
     private $_fields = array();
+
+    private static $_fieldset = array(
+      Enquiry_Field::FIELD    => 'field',
+      Enquiry_Field::OPERATOR => 'operator',
+      Enquiry_Field::VALUE    => 'value'
+    );
 
     /**
      * Adds a new enquiry data operation field
@@ -30,12 +44,12 @@
      */
     public function add($field, $operator, $value){
 
-      $actual_operator = OFSOperator::get_operator_name($operator);
+      $actual_operator = OFSOperator::get_value($operator);
 
       $data_content = array(
-        Enquiry::FIELD    => $field,
-        Enquiry::OPERATOR => $actual_operator,
-        Enquiry::VALUE    => $value
+        self::$_fieldset[Enquiry_Field::FIELD]    => $field,
+        self::$_fieldset[Enquiry_Field::OPERATOR] => $actual_operator,
+        self::$_fieldset[Enquiry_Field::VALUE]    => $value
       );
 
       $this->_fields[] = $data_content;
@@ -56,9 +70,9 @@
       foreach($this->_fields as $field){
         $substring = sprintf(
           $content_template,
-          $field[Enquiry::FIELD],
-          $field[Enquiry::OPERATOR],
-          $field[Enquiry::VALUE]
+          $field[self::$_fieldset[Enquiry_Field::FIELD]],
+          $field[self::$_fieldset[Enquiry_Field::OPERATOR]],
+          $field[self::$_fieldset[Enquiry_Field::VALUE]]
         );
 
         $data_string .= $substring;
