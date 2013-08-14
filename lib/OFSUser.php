@@ -80,6 +80,41 @@
       else
         $this->set_instance_options($option, $value);
     }
+
+    /**
+     * Reads a given property from default user properties
+     *
+     * @param   string  $option the property being accessed
+     * @return  mixed   $values
+     *
+     */
+    private function get_default_options($option){
+      $values = array();
+
+      if($option == 'information'){
+          foreach(self::$_options_list as $option){
+            if(isset(self::$_defaults[$option])){
+              $values[$option] = self::$_defaults[$option];
+            }
+            else{
+              $values[$option] = null;
+            }
+          }
+        }
+      elseif(  !empty(self::$_defaults)
+            && array_key_exists($option, self::$_defaults)
+      ){
+        $values = self::$_defaults[$option];
+      }
+      elseif(in_array($option, self::$_options_list)){
+        $values = null;
+      }
+      else{
+        throw new OFSException(SyntaxError::UNDEFINED_FIELD, $option);
+      }
+
+      return $values;
+    }
   }
 ?>
 
