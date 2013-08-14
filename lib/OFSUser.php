@@ -188,7 +188,7 @@
     }
 
     /**
-     * Sets a given property to default user properties
+     * Sets a given property to instance specific user properties
      *
      * @param string  $option the name of the property
      * @param mixed   $values the actual values
