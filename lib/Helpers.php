@@ -100,7 +100,7 @@
         $tok = ($tok[$toklen] == '"') ? substr($tok, 1, -1) : $new_tok;
       }
 
-      $index = (isset($keys[$i]) && !empty(trim($keys[$i]))) ? $keys[$i] : $i;
+      $index = (isset($keys[$i]) && "" != trim($keys[$i])) ? $keys[$i] : $i;
       $tokens[$index] = trim($tok);
 
       $i++;
