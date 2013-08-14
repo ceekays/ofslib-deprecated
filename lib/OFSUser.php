@@ -115,6 +115,41 @@
 
       return $values;
     }
+
+    /**
+     * Reads a given property from instance specific user properties
+     *
+     * @param   string  $option the property being accessed
+     * @return  mixed   $values
+     *
+     */
+    private function get_instance_values($option){
+      $values = array();
+
+      if($option == 'information'){
+          foreach(self::$options_list as $option){
+            if(isset($this->_locals[$option])){
+              $values[$option] = $this->_locals[$option];
+            }
+            else{
+              $values[$option] = null;
+            }
+          }
+        }
+      elseif(   !empty($this->_locals)
+            &&  array_key_exists($option, $this->_locals)
+      ){
+        $values = $this->_locals[$option];
+      }
+      elseif(in_array($option, self::$options_list)){
+        $values = null;
+      }
+      else{
+        throw new OFSException(SyntaxError::UNDEFINED_FIELD, $option);
+      }
+
+      return $values;
+    }
   }
 ?>
 
