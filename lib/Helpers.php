@@ -82,5 +82,31 @@
     return $flattened_array;
   }
 
+  /**
+   * Tokenizes a string based on either quotes or a tab space
+   * Based on: http://www.php.net/manual/en/function.strtok.php#53244
+   * @param array $value the array parameter
+   * @param array $keys an optional array of keys
+   *@returns $flattened_array
+   */
+  function strtok_quoted($string, array $keys = array()){
+    $tok = strtok($string, "\t");
+
+    for($i = 0, $tokens = array(); $tok !== false; $tok = strtok("\t")){
+      if($tok[0] == '"'){
+        $tok_len  = strlen($tok)-1;
+        $new_tok  = substr($tok, 1) . ' ' . strtok('"');
+
+        $tok = ($tok[$toklen] == '"') ? substr($tok, 1, -1) : $new_tok;
+      }
+
+      $index = (isset($keys[$i]) && !empty(trim($keys[$i]))) ? $keys[$i] : $i;
+      $tokens[$index] = trim($tok);
+
+      $i++;
+    }
+
+    return $tokens;
+  }
 ?>
 
