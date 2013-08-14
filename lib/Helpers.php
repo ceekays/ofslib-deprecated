@@ -65,5 +65,22 @@
     return $is_hashed;
   }
 
+  /**
+   * Flattens an array of arrays (if any)
+   * Based on: http://snippets.dzone.com/posts/show/4660
+   * @param array $value the array parameter
+   *@returns $flattened_array
+   */
+  function array_flatten(array $value){
+
+	  for ($i = 0; $i < count($value);){
+	    is_array($value[$i]) ? array_splice($value,$i,1,$value[$i]) : $i++;
+	  }
+
+    $flattened_array = $value;
+
+    return $flattened_array;
+  }
+
 ?>
 
