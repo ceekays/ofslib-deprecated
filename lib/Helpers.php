@@ -47,5 +47,23 @@
     return $last_element;
   }
 
+  /**
+   * Checks if an array is a 'hash' (i.e. it is an associative array)
+   * @param array  $value  the array parameter
+   * returns boolean $is_hashed
+   *
+   */
+  function is_hash(array $value){
+      $is_hashed = false;
+      if(!is_array($value)) return $is_hashed;
+
+      $keys       = array_keys($value);
+      $key_range  = array_keys($keys);
+
+      if($keys !== $key_range) $is_hashed = true;
+
+    return $is_hashed;
+  }
+
 ?>
 
