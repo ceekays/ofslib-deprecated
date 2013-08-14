@@ -15,6 +15,14 @@
   class Enquiry{
 
     /**
+     *   data operation constants for enquiry
+     *
+     */
+    const FIELD   = '557ce059-dcf5-40d7-959a-237e835187a9';
+    const OPERAND = 'e167e204-0be0-4dc1-b7aa-403e3489a56e';
+    const VALUE   = 'd9b04ddb-f613-4b75-bd0d-e38176746b13';
+
+    /**
      * Holds the Enquiry_Request() object
      * @var $request
      */
