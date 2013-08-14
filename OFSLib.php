@@ -12,7 +12,7 @@
  *      (kachaleedmond [at] gmail [dot] com)                                  *
  *                                                                            *
  ******************************************************************************/
-
+  require 'lib/Helpers.php';
 
   function __autoload_ofslib($class_name){
     $class_path = null;
