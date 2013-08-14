@@ -43,6 +43,33 @@
       $this->response = new Enquiry_Response();
       $this->user     = new OFSUser();
     }
+
+    /**
+     * Reads data from private properties
+     *
+     * @param   string $option the name of the property
+     * @return  mixed  $value
+     *
+     */
+    function __get($option){
+      $value = null;
+
+      if(!in_array($option, $this->_options_list))
+        throw new OFSException(SyntaxError::WRONG_DATA, $option);
+
+      switch($option){
+        case 'name':
+          $value = $this->_name;
+        break;
+
+        case    'text':
+        case 'message':
+          $value = $this->_request;
+        break;
+      }
+
+      return $value;
+    }
   }
  ?>
 
