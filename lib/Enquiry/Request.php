@@ -32,6 +32,12 @@
     private $_forbidden_fields = array('message', 'text');
 
     /**
+     * Holds the name of an enquiry operation
+     * @var $_operation
+     */
+    private $_operation = 'ENQUIRY.SELECT';
+
+    /**
      * Holds a list of accessible fields
      * @var $_options_list
      */
