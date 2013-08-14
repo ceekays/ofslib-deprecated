@@ -150,6 +150,42 @@
 
       return $values;
     }
+
+    /**
+     * Sets a given property to default user properties
+     *
+     * @param string  $option the name of the property
+     * @param mixed   $values the actual values
+     *
+     */
+    private function set_default_options($option, $values){
+
+      if($option == 'information'){
+        if(!is_hash($values)){
+          throw new OFSException(SyntaxError::WRONG_DATA, 'a hash');
+        }
+
+        $array_keys = array_keys($values);
+        $array_diff = array_diff($array_keys, self::$options_list);
+
+        if(!empty($array_diff)){
+          throw new OFSException(
+            SyntaxError::UNKNOWN_FIELDS,
+            join(',', $array_diff)
+          );
+        }
+
+        foreach($values as $key => $data){
+          self::$_defaults[$key] = $data;
+        }
+      }
+      elseif(in_array($option, self::$options_list)){
+        self::$_defaults[$option] = $values;
+      }
+      else{
+        throw new OFSException(SyntaxError::UNKNOWN_FIELDS, $option);
+      }
+    }
   }
 ?>
 
