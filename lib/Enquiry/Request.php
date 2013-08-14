@@ -13,6 +13,17 @@
  *                                                                            *
  ******************************************************************************/
   class Enquiry_Request extends OFSConnector {
+    /**
+     * Holds the actual enquiry name
+     * @var $_name
+     */
+    private $_name = null;
+
+    /**
+     * Holds the raw request message
+     * @var $_request
+     */
+    private $_request = null;
 
     /**
      * Holds Enquiry_Field object
