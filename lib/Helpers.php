@@ -13,5 +13,19 @@
  *                                                                            *
  ******************************************************************************/
 
+
+  /**
+   * This is like Ruby's 'inspect' method. Whenever you are not sure, just dump
+   * @param mixed $object
+   * @returns void
+   *
+   */
+  function dump($object) {
+    echo "<pre>";
+      print_r($object);
+    echo "</pre>";
+    exit;
+  }
+
 ?>
 
