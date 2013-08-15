@@ -154,6 +154,30 @@
         break;
       }
     }
+
+    /**
+   * Creates a transaction request message in the form:
+   * OPERATION,VERSION_NAME/FUNCTION_TYPE/PROCESSING_FLAG,USERNAME/PASSWORD/COMPANY,TRANSACTION_ID/MESSAGE_ID,FIELD:VM:SM=DATA
+   *
+   * @returns $this object
+   *
+   */
+    public function to_ofs() {
+      $transaction_request_template = "%s,%s,%s,%s,%s";
+
+      $transaction_request = sprintf(
+        $transaction_request_template,
+        $this->_operation,
+        $this->options->__toString(),
+        $this->user->__toString(),
+        $this->get_transaction_details_string(),
+        $this->fields->__toString()
+      );
+
+      $this->_request = $transaction_request;
+
+      return $this;
+    }
   }
 ?>
 
