@@ -94,13 +94,13 @@
 
     for($i = 0, $tokens = array(); $tok !== false; $tok = strtok("\t")){
       if($tok[0] == '"'){
-        $tok_len  = strlen($tok)-1;
-        $new_tok  = substr($tok, 1) . ' ' . strtok('"');
-
-        $tok = ($tok[$toklen] == '"') ? substr($tok, 1, -1) : $new_tok;
+        if($tok[strlen($tok)-1] == '"')
+          $tok = substr($tok, 1, -1);
+        else
+          $tok = substr($tok, 1) . ' ' . strtok('"');
       }
 
-      $index = (isset($keys[$i]) && "" != trim($keys[$i])) ? $keys[$i] : $i;
+      $index = (isset($keys[$i]) && '' != trim($keys[$i])) ? $keys[$i] : $i;
       $tokens[$index] = trim($tok);
 
       $i++;
