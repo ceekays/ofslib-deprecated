@@ -86,6 +86,46 @@
     public function set_response($text){
       $this->_response = $text;
     }
+
+    /**
+     * Converts an enquiry response into an array of hash values
+     *
+     * @param array $keys an optional array of hash keys
+     * @returns array $hash a hash array
+     *
+     */
+    public function to_hash(array $keys = array()){
+      $hash     = array();
+      $headers  = array();
+
+      $start  = strpos($this->_response, '"');
+      $data   = substr($this->_response, $start);
+
+      if(empty($keys)){
+        $header_section = explode(',',substr($this->_response, 0, $start-1));
+        $column_headers = explode('/', $header_section[1]);
+
+        foreach($column_headers as $header){
+          $this_header = explode('::', $header);
+
+          isset($this_header[1]) ? $headers[] = $this_header[1] : null;
+        }
+
+        $keys = $headers;
+      }
+
+      $data = str_replace('",', '"",', $data);
+      $data = str_replace(',"', ',""', $data);
+
+      $columns  = explode('","', $data);
+
+      foreach($columns as $column){
+        $data = strtok_quoted($column, $keys);
+        $hash[] = $data;
+      }
+
+      return $hash;
+    }
   }
  ?>
 
