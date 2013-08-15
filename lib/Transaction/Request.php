@@ -124,6 +124,37 @@
 
       return $value;
     }
+
+    /**
+     * Writes data to magic properties
+     *
+     * @param string $option the name of the property
+     * @param mixed  $value
+     *
+     */
+    public function __set($option, $value){
+      $value = null;
+
+      if(!in_array($option, self::$_options_list))
+        throw new OFSException(SyntaxError::WRONG_DATA, $option);
+
+      switch($option){
+        case      'name':
+        case 'operation':
+          $this->_operation = $value;
+        break;
+
+        case    'text':
+        case 'message':
+          $this->_request = $value;
+        break;
+
+        case     'message_id':
+        case 'transaction_id':
+            $this->_transaction_details[$option] = $value;
+        break;
+      }
+    }
   }
 ?>
 
