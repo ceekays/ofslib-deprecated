@@ -156,12 +156,12 @@
     }
 
     /**
-   * Creates a transaction request message in the form:
-   * OPERATION,VERSION_NAME/FUNCTION_TYPE/PROCESSING_FLAG,USERNAME/PASSWORD/COMPANY,TRANSACTION_ID/MESSAGE_ID,FIELD:VM:SM=DATA
-   *
-   * @returns $this object
-   *
-   */
+     * Creates a transaction request message in the form:
+     * OPERATION,VERSION_NAME/FUNCTION_TYPE/PROCESSING_FLAG,USERNAME/PASSWORD/COMPANY,TRANSACTION_ID/MESSAGE_ID,FIELD:VM:SM=DATA
+     *
+     * @returns $this object
+     *
+     */
     public function to_ofs() {
       $transaction_request_template = "%s,%s,%s,%s,%s";
 
