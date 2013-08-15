@@ -56,9 +56,9 @@
 
     /**
      * Holds the name of an transaction operation
-     * @var $operation
+     * @var $_operation
      */
-    public $operation = null;
+    private $_operation = null;
 
     /**
      * Holds the name of an transaction operation
@@ -89,6 +89,40 @@
       $this->options  = new Transaction_Option();
       $this->fields   = new Transaction_Field();
       $this->response = new Transaction_Response();
+    }
+
+    /**
+     * Reads data from magic properties
+     *
+     * @param   string $option the name of the property
+     * @return  mixed  $value
+     *
+     */
+    public function __get($option){
+      $value = null;
+
+      if(!in_array($option, self::$_options_list))
+        throw new OFSException(SyntaxError::WRONG_DATA, $option);
+
+      switch($option){
+        case      'name':
+        case 'operation':
+          $value = $this->_operation;
+        break;
+
+        case    'text':
+        case 'message':
+          $value = $this->_request;
+        break;
+
+        case     'message_id':
+        case 'transaction_id':
+          if(isset($this->_transaction_details[$option]))
+            $value = $this->_transaction_details[$option];
+        break;
+      }
+
+      return $value;
     }
   }
 ?>
