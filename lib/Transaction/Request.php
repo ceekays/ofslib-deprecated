@@ -133,7 +133,6 @@
      *
      */
     public function __set($option, $value){
-      $value = null;
 
       if(!in_array($option, self::$_options_list))
         throw new OFSException(SyntaxError::WRONG_DATA, $option);
