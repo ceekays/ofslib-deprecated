@@ -56,13 +56,13 @@
 
     /**
      * Holds the name of an transaction operation
-     * @var $_operation
+     * @var $operation
      */
     public $operation = null;
 
     /**
      * Holds the name of an transaction operation
-     * @var $_operation
+     * @var $options
      */
     public $options = null;
 
