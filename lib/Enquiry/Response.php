@@ -55,6 +55,29 @@
       return $value;
     }
 
+    /**
+     * Writes data to private properties
+     *
+     * @param string $option the name of the property
+     * @param mixed  $value
+     *
+     */
+    public function __set($option, $value){
+      if(!in_array($option, $this->_options_list))
+        throw new OFSException(SyntaxError::UNKNOWN_FIELDS, $option);
+      if(in_array($option, $this->_forbidden_fields))
+        throw new OFSException(SyntaxError::READONLY_FIELD, $option);
+
+      else $this->{$option} = $value;
+
+      switch($option){
+
+        case    'text':
+        case 'message':
+          $this->_response = $value;
+        break;
+      }
+    }
   }
  ?>
 
