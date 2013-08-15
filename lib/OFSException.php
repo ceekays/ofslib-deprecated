@@ -66,7 +66,7 @@
 
       echo "<pre>";
       echo static::$exception ."<br/>";
-      echo str_repeat("_", 120)."<br/><br/>";
+      echo str_repeat("_", strlen(static::$exception))."<br/><br/>";
 
       $i = 1;
       foreach(static::$stacktrace as $node){
