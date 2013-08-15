@@ -55,13 +55,13 @@
     public $fields = null;
 
     /**
-     * Holds the name of an transaction operation
+     * Holds the name of a transaction operation
      * @var $_operation
      */
     private $_operation = null;
 
     /**
-     * Holds the name of an transaction operation
+     * Holds the name of a transaction operation
      * @var $options
      */
     public $options = null;
@@ -79,7 +79,7 @@
     public $user = null;
 
     /**
-     * Creates an transaction request
+     * Creates a transaction request
      *
      * @return  Transaction_Request object
      *
