@@ -78,6 +78,18 @@
      */
     public $user = null;
 
+    /**
+     * Creates an transaction request
+     *
+     * @return  Transaction_Request object
+     *
+     */
+    function Transaction_Request(){
+      $this->user     = new OFSUser();
+      $this->options  = new Transaction_Option();
+      $this->fields   = new Transaction_Field();
+      $this->response = new Transaction_Response();
+    }
   }
 ?>
 
