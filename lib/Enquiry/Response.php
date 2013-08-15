@@ -17,7 +17,7 @@
     /**
      * Holds a list of fields that are forbidden from modifying
      * @var $_forbidden_fields
-     */    
+     */
     private static $_forbidden_fields = array('message', 'text');
 
     /**
@@ -42,7 +42,7 @@
     public function __get($option){
       $value = null;
 
-      if(!in_array($option, $this->_options_list))
+      if(!in_array($option, self::$_options_list))
         throw new OFSException(SyntaxError::WRONG_DATA, $option);
 
       switch($option){
@@ -63,9 +63,9 @@
      *
      */
     public function __set($option, $value){
-      if(!in_array($option, $this->_options_list))
+      if(!in_array($option, self::$_options_list))
         throw new OFSException(SyntaxError::UNKNOWN_FIELDS, $option);
-      if(in_array($option, $this->_forbidden_fields))
+      if(in_array($option, self::$_forbidden_fields))
         throw new OFSException(SyntaxError::READONLY_FIELD, $option);
 
       else $this->{$option} = $value;
