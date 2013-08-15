@@ -46,7 +46,7 @@
         throw new OFSException(SyntaxError::WRONG_DATA, $option);
 
       switch($option){
-        case 'text':
+        case    'text':
         case 'message':
           $value = $this->_response;
         break;
