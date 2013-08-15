@@ -78,6 +78,14 @@
         break;
       }
     }
+
+    /**
+     * Sets an OFS response
+     *
+     */
+    public function set_response($text){
+      $this->_response = $text;
+    }
   }
  ?>
 
