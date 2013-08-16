@@ -161,6 +161,13 @@
       }
     }
 
+    /**
+     * Sets transaction options using a hash
+     *
+     * @param array $transaction_options
+     * @returns $this object
+     *
+     */
     public function set_by_hash(array $transaction_options){
       $option_keys = array_keys($transaction_options);
 
@@ -173,6 +180,8 @@
           $option = self::$_options_list[$key];
         $this->{$option} = $value;
       }
+
+      return $this;
     }
   }
 ?>
