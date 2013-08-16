@@ -40,7 +40,7 @@
     public static function get_processing_flag_value($flag){
       $name = null;
 
-      if(!in_array($flag, FunctionType::get_processing_flag_list())){
+      if(!in_array($flag, ProcessingFlag::get_processing_flag_list())){
         throw new OFSException(
           SyntaxError::UNKNOWN_PROCESSING_FLAG,
           $flag
