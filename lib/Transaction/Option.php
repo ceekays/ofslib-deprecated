@@ -41,6 +41,25 @@
      * @var $_transaction_options
      */
     private $_transaction_options = array();
+
+    /**
+     * Reads data from magic properties
+     *
+     * @param   string $option the name of the property
+     * @return  mixed  $value
+     *
+     */
+    public function __get($option){
+      $value = null;
+
+      if(!in_array($option, array_values(self::$_options_list)))
+        throw new OFSException(SyntaxError::UNKNOWN_FIELDS, $option);
+
+      if(isset($this->_transaction_options[$option]))
+        $value = $this->_transaction_options[$option];
+
+      return $value;
+    }
   }
 ?>
 
