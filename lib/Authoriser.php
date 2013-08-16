@@ -43,6 +43,28 @@
       Authoriser::TWO_AUTHORISERS   => '2'
     );
 
+
+    /**
+     * Retrieves the value of a given authoriser code
+     *
+     * @param   $authoriser the actual value of an authoriser
+     * @returns $value
+     *
+     */
+    public static function get_authoriser_value($authoriser){
+      $value = null;
+
+      if(!in_array($authoriser, Authoriser::get_authoriser_list())){
+        throw new OFSException(
+          SyntaxError::UNKNOWN_AUTHORISER,
+          $authoriser
+        );
+      }
+
+      $value = self::$_authorisers[$authoriser];
+
+      return $value;
+    }
   }
 ?>
 
