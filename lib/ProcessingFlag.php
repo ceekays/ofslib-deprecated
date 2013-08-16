@@ -30,5 +30,26 @@
       ProcessingFlag::VALIDATE  => 'VALIDATE'
     );
 
+    /**
+     * Retrieves the name of a given processing flag
+     *
+     * @param   $flag the processing flag
+     * @returns $name
+     *
+     */
+    public static function get_processing_flag_value($flag){
+      $name = null;
+
+      if(!in_array($flag, FunctionType::get_processing_flag_list())){
+        throw new OFSException(
+          SyntaxError::UNKNOWN_PROCESSING_FLAG,
+          $flag
+        );
+      }
+
+      $name = self::$_processing_flag_names[$flag];
+
+      return $name;
+    }
   }
 ?>
