@@ -24,7 +24,12 @@
     const READONLY_FIELD          = "Cannot modify '%s'. It is readonly.";
     const UNDEFINED_FIELD         = "Expected '%s' but has not been defined or supplied.";
     const UNDEFINED_USER_OPTIONS  = "Undefined user information.";
+    const UNKNOWN_AUTHORISER      = "Unknown authoriser type '%s' supplied";
     const UNKNOWN_FIELDS          = "Unknown fields supplied: '%s'.";
+    const UNKNOWN_FUNCTION_TYPE   = "Unknown function type '%s' supplied";
+    const UNKNOWN_GTS_CONTROL     = "Unknown GTS control '%s' supplied";
+    const UNKNOWN_PROCESSING_FLAG = "Unknown processing flag '%s' supplied";
+    const UNKNOWN_TRANSACTION_OPTION = "Unknown transaction option '%s' supplied";
     const WRONG_DATA              = "Wrong data format supplied. Expected '%s'";
     const WRONG_FIELD_COUNT       = "You supplied wrong number of arguments.";
   }
