@@ -60,6 +60,77 @@
 
       return $value;
     }
+
+    /**
+     * Writes data to magic properties
+     *
+     * @param string $option the name of the property
+     * @param mixed  $value
+     *
+     */
+    public function __set($option, $value){
+      if(!in_array($option, array_values(self::$_options_list))){
+        throw new OFSException(
+          SyntaxError::UNKNOWN_TRANSACTION_OPTION,
+          $option
+        );
+      }
+
+      switch($option){
+
+        case 'authorisers':
+          if(!in_array($value, Authoriser::get_authoriser_list())){
+            throw new OFSException(
+              SyntaxError::UNKNOWN_AUTHORISER,
+              $value
+            );
+          }
+
+          $authoriser = Authoriser::get_authoriser_value($value);
+          $this->_transaction_options[$option] = $authoriser;
+        break;
+
+        case 'function_type':
+          if(!in_array($value, FunctionType::get_function_type_list())){
+            throw new OFSException(
+              SyntaxError::UNKNOWN_FUNCTION_TYPE,
+              $value
+            );
+          }
+
+          $function_type = FunctionType::get_function_type_value($value);
+          $this->_transaction_options[$option] = $function_type;
+        break;
+
+        case 'gts_control':
+          if(!in_array($value, GTSControl::get_gts_control_list())){
+            throw new OFSException(
+              SyntaxError::UNKNOWN_GTS_CONTROL,
+              $value
+            );
+          }
+
+          $gts_control = GTSControl::get_gts_control_value($value);
+          $this->_transaction_options[$option] = $gts_control;
+        break;
+
+        case 'processing_flag':
+          if(!in_array($value, ProcessingFlag::get_processing_flag_list())){
+            throw new OFSException(
+              SyntaxError::UNKNOWN_PROCESSING_FLAG,
+              $value
+            );
+          }
+
+          $processing_flag = ProcessingFlag::get_processing_flag_value($value);
+          $this->_transaction_options[$option] = $processing_flag;
+        break;
+
+        default:
+          $this->_transaction_options[$option] = $value;
+        break;
+      }
+    }
   }
 ?>
 
