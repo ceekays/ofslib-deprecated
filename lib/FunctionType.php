@@ -39,6 +39,28 @@
       FunctionType::SEE       => 'S',
       FunctionType::VERIFY    => 'V'
     );
+
+    /**
+     * Retrieves the name of a given function type
+     *
+     * @param   $function_type the function type
+     * @returns $name
+     *
+     */
+    public static function get_function_type_value($function_type){
+      $name = null;
+
+      if(!in_array($function_type, FunctionType::get_function_type_list())){
+        throw new OFSException(
+          SyntaxError::UNKNOWN_FUNCTION_TYPE,
+          $function_type
+        );
+      }
+
+      $name = self::$_function_type_names[$function_type];
+
+      return $name;
+    }
   }
 ?>
 
