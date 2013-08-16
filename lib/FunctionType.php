@@ -1,0 +1,19 @@
+<?php
+/******************************************************************************
+ *      FunctionType.php                                                      *
+ *      - Defines OFS function types                                          *
+ *                                                                            *
+ *      https://github.com/ceekays/ofslib                                     *
+ *                                                                            *
+ ******************************************************************************
+ *                                                                            *
+ *      Created in August 2013                                                *
+ *      by Edmond C. Kachale (Malawi)                                         *
+ *      (kachaleedmond [at] gmail [dot] com)                                  *
+ *                                                                            *
+ ******************************************************************************/
+
+  class FunctionType{
+  }
+?>
+
