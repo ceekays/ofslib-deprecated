@@ -25,6 +25,20 @@
     const REVERSE   = '5eb22e74-7b58-4847-a798-b36061047f2a';
     const SEE       = 'c158389b-fb48-41f4-af1b-01d5fb21f4b7';
     const VERIFY    = 'c92b2962-b780-4c1a-87ea-0c09b13b16c6';
+
+    /**
+     * Holds the actual names of the function type names
+     * @var $_function_type_names
+     */
+    private static $_function_type_names = array(
+      FunctionType::AUTHORISE => 'A',
+      FunctionType::DELETE    => 'D',
+      FunctionType::INPUT     => 'I',
+      FunctionType::NONE      => '',
+      FunctionType::REVERSE   => 'R',
+      FunctionType::SEE       => 'S',
+      FunctionType::VERIFY    => 'V'
+    );
   }
 ?>
 
