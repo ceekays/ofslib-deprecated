@@ -61,6 +61,18 @@
 
       return $name;
     }
+
+    /**
+     * Retrieves a list of function types
+     *
+     * @returns $function_type_list
+     *
+     */
+    public static function get_function_type_list(){
+      $function_type_list = array_keys(self::$_function_type_names);
+
+      return $function_type_list;
+    }
   }
 ?>
 
