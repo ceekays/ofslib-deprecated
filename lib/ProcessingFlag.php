@@ -51,5 +51,17 @@
 
       return $name;
     }
+
+    /**
+     * Retrieves a list of processing flags
+     *
+     * @returns $processing_flag_list
+     *
+     */
+    public static function get_processing_flag_list(){
+      $processing_flag_list = array_keys(self::$_processing_flag_names);
+
+      return $processing_flag_list;
+    }
   }
 ?>
