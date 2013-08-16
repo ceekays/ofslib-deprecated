@@ -160,6 +160,20 @@
         break;
       }
     }
+
+    public function set_by_hash(array $transaction_options){
+      $option_keys = array_keys($transaction_options);
+
+      $diff = array_diff($option_keys, array_keys(self::$_options_list));
+      if(!empty($diff)){
+        throw new OFSException(SyntaxError::UNKNOWN_FIELDS, join(', ', $diff));
+      }
+
+      foreach($transaction_options as $key => $value){
+          $option = self::$_options_list[$key];
+        $this->{$option} = $value;
+      }
+    }
   }
 ?>
 
