@@ -30,6 +30,10 @@
     /* alias for GTSControl::REJECT_ON_ERROR_AND_APPROVE_ON_OVERRIDE */
     const USE_DEFAULT = GTSControl::REJECT_ON_ERROR_AND_APPROVE_ON_OVERRIDE;
 
+    /**
+     * Holds the actual values of the GTS control values
+     * @var $_gts_control_values
+     */
     private static $_gts_control_values = array(
       GTSControl::REJECT_ON_ERROR_AND_APPROVE_ON_OVERRIDE  => '',
       GTSControl::HOLD_ON_ERROR_AND_APPROVE_ON_OVERRIDE    => '1',
@@ -58,6 +62,18 @@
       $value = self::$_gts_control_values[$gts_control];
 
       return $value;
+    }
+
+    /**
+     * Retrieves a list of GTS control values
+     *
+     * @returns $gts_control_list
+     *
+     */
+    public static function get_gts_control_list(){
+      $gts_control_list = array_keys(self::$_gts_control_values);
+
+      return $gts_control_list;
     }
   }
 ?>
