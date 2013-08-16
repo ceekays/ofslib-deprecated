@@ -1,0 +1,18 @@
+<?php
+/******************************************************************************
+ *      ProcessingFlag.php                                                    *
+ *      - Definitions for OFS Processing Flags                                *
+ *                                                                            *
+ *                                                                            *
+ *      https://github.com/ceekays/ofslib                                     *
+ *                                                                            *
+ ******************************************************************************
+ *                                                                            *
+ *      Created in August 2013                                                *
+ *      by Edmond C. Kachale (Malawi)                                         *
+ *      (kachaleedmond [at] gmail [dot] com)                                  *
+ *                                                                            *
+ ******************************************************************************/
+  class ProcessingFlag{
+  }
+?>
