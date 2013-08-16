@@ -37,6 +37,28 @@
       GTSControl::HOLD_ON_BOTH_ERROR_AND_OVERRIDE          => '3',
       GTSControl::HOLD_ALL_TRANSACTIONS                    => '4'
     );
+
+    /**
+     * Retrieves the name of a given GTS Control
+     *
+     * @param   $gts_control GTS Control name
+     * @returns $value
+     *
+     */
+    public static function get_gts_control_value($gts_control){
+      $value = null;
+
+      if(!in_array($gts_control, FunctionType::get_function_type_list())){
+        throw new OFSException(
+          SyntaxError::UNKNOWN_FUNCTION_TYPE,
+          $gts_control
+        );
+      }
+
+      $value = self::$_gts_control_values[$gts_control];
+
+      return $value;
+    }
   }
 ?>
 
