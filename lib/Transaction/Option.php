@@ -183,6 +183,32 @@
 
       return $this;
     }
+
+    /**
+     * Creates an OFS options string
+     *
+     * @returns $options
+     *
+     */
+    public function __toString(){
+      $options = sprintf(
+         "%s/%s/%s/%s/%s",
+         $this->version_name,
+         $this->function_type,
+         $this->processing_flag,
+         $this->gts_control,
+         $this->authorisers
+      );
+
+      /**
+       * trim the last two // if both gts_control and authorisers
+       * are not available
+       */
+      $options = rtrim($options, '/');
+      $options = rtrim($options, '/');
+
+      return $options;
+    }
   }
 ?>
 
