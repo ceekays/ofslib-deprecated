@@ -48,9 +48,9 @@
     public static function get_gts_control_value($gts_control){
       $value = null;
 
-      if(!in_array($gts_control, FunctionType::get_function_type_list())){
+      if(!in_array($gts_control, GTSControl::get_gts_control_list())){
         throw new OFSException(
-          SyntaxError::UNKNOWN_FUNCTION_TYPE,
+          SyntaxError::UNKNOWN_GTS_CONTROL,
           $gts_control
         );
       }
