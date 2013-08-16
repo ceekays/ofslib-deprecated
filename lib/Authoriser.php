@@ -27,7 +27,7 @@
     /**
      * Aliases for the number of authoriser codes
      */
-    const DOUBLE_AUTHORISERS  = Authoriser::TWO_AUTHORISERS;
+    const DOUBLE_AUTHORISER   = Authoriser::TWO_AUTHORISERS;
     const NO_AUTHORISERS      = Authoriser::ZERO_AUTHORISERS;
     const SELF_AUTHORISER     = Authoriser::ZERO_AUTHORISERS;
     const SINGLE_AUTHORISER   = Authoriser::ONE_AUTHORISER;
@@ -64,6 +64,18 @@
       $value = self::$_authorisers[$authoriser];
 
       return $value;
+    }
+
+    /**
+     * Retrieves a list of authoriser values
+     *
+     * @returns $authoriser_list
+     *
+     */
+    public static function get_authoriser_list(){
+      $authoriser_list = array_keys(self::$_authorisers);
+
+      return $authoriser_list;
     }
   }
 ?>
