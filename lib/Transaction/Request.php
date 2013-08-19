@@ -174,9 +174,23 @@
         $this->fields->__toString()
       );
 
-      $this->_request = $transaction_request;
+      $this->_request = rtrim($transaction_request,',');
 
       return $this;
+    }
+
+  /**
+   * Retrieves transaction_id and message_id
+   *
+   * @returns string $txn_details_string
+   *
+   */
+    private function get_transaction_details_string(){
+      $txn_details_string = null;
+      if(null != $this->transaction_id || null != $this->message_id)
+      $txn_details_string = sprintf("%s/%s", $this->transaction_id, $this->message_id);
+
+      return $txn_details_string;
     }
 
   /**
