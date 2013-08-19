@@ -62,6 +62,34 @@
 
       return $this;
     }
+
+
+    /**
+     * Creates a data content string
+     *
+     *  @returns string $data_string
+     *
+     */
+    public function __toString(){
+      $content_template = "%s:%s:%s=%s,";
+      $data_string      = null;
+
+      foreach($this->_fields as $field){
+        $substring = sprintf(
+          $content_template,
+          $field[self::$_fieldset[Transaction_Field::FIELD]],
+          $field[self::$_fieldset[Transaction_Field::MULTI_VALUE]],
+          $field[self::$_fieldset[Transaction_Field::SUB_VALUE]],
+          $field[self::$_fieldset[Transaction_Field::VALUE]]
+        );
+
+        $data_string .= $substring;
+      }
+
+      $data_string = rtrim($data_string, ",");
+
+      return $data_string;
+    }
   }
 ?>
 
