@@ -31,6 +31,29 @@
      * @var $_response
      */
     protected $_response;
+
+    /**
+     * Reads data from internal attributes
+     *
+     * @param   string $option the name of the property
+     * @returns mixed  $value
+     *
+     */
+    public function __get($option){
+      $value = null;
+
+      if(!in_array($option, self::$_options_list))
+        throw new OFSException(SyntaxError::WRONG_DATA, $option);
+
+      switch($option){
+        case    'text':
+        case 'message':
+          $value = $this->_response;
+        break;
+      }
+
+      return $value;
+    }
   }
 ?>
 
