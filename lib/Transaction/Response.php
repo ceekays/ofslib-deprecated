@@ -80,7 +80,7 @@
     }
 
     /**
-     * a normal transaction response has format:
+     * Interprets a transaction response of the form:
      *  TRANSACTION ID/MESSAGE ID/SUCCESS INDICATOR, RESPONSE DATA
      */
     public function to_hash(){
