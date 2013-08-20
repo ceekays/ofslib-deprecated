@@ -90,11 +90,47 @@
       preg_match_all('/([\,\/])/', $this->message, $matches);
 
       if(count($matches[0]) >= 3)
-        $hash = $this->get_response_details();
+        $hash = $this->extract_response_details();
       else
         $hash = $this->get_error_details();
 
       return $hash;
+    }
+
+    /**
+     * Extracts the field details from the response data
+     *
+     * returns $this object
+     */
+    private function extract_response_details(){
+      $start  = strpos($this->message, ',');
+      $header = explode('/',substr($this->message, 0, $start));
+      $data   = explode(',', substr($this->message, $start + 1));
+
+      $this->set_header_details($header[0], $header[1], $header[2]);
+
+      foreach($data as $data_field){
+
+        $pattern  = '/(?P<field>[a-zA-Z-.0-9]*):(?P<multi_value>\d+):';
+        $pattern .= '(?P<sub_value>\d+)=(?P<value>.{0,})/';
+
+        preg_match($pattern, $data_field, $field);
+
+        if(count($field) < 3){
+          $pattern  = '/(?P<field>[a-zA-Z-.0-9]*)=(?P<value>.{0,}):';
+          $pattern .= '(?P<multi_value>\d+):(?P<sub_value>\d+)/';
+
+          preg_match($pattern, $data_field, $field);
+        }
+
+        $this->fields->add(
+          $field['field'],
+          $field['value'],
+          $field['multi_value'],
+          $field['sub_value']
+        );
+      }
+      return $this;
     }
 
   }
