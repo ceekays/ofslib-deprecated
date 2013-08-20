@@ -33,6 +33,22 @@
     protected $_response;
 
     /**
+     * Holds Transaction_Field object
+     * @var $fields
+     */
+    public $fields = null;
+
+    /**
+     * Creates a transaction response
+     *
+     * @return  Transaction_Response object
+     *
+     */
+    public function Transaction_Response() {
+      $this->fields = new Transaction_Field();
+    }
+
+    /**
      * Reads data from internal attributes
      *
      * @param   string $option the name of the property
