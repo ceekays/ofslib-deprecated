@@ -78,6 +78,25 @@
     public function set_response($text){
       $this->_response = $text;
     }
+
+    /**
+     * a normal transaction response has format:
+     *  TRANSACTION ID/MESSAGE ID/SUCCESS INDICATOR, RESPONSE DATA
+     */
+    public function to_hash(){
+      $matches  = null;
+      $hash     = null;
+
+      preg_match_all('/([\,\/])/', $this->message, $matches);
+
+      if(count($matches[0]) >= 3)
+        $hash = $this->get_response_details();
+      else
+        $hash = $this->get_error_details();
+
+      return $hash;
+    }
+
   }
 ?>
 
