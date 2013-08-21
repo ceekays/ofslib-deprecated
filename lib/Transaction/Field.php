@@ -63,7 +63,35 @@
       return $this;
     }
 
+    /**
+     * Fetches for a value of a given field
+     *
+     * @param string  $field        the transaction response field name
+     * @param int     $multi_value  multi value number
+     * @param int     $sub_value    sub-value number
+     * @returns $value
+     *
+     */
+    public function fetch($field_name, $multi_value=1, $sub_value=1){
+      $value = null;
+      $field_accessor = self::$_fieldset[Transaction_Field::FIELD];
+      $vm_accessor    = self::$_fieldset[Transaction_Field::MULTI_VALUE];
+      $sm_accessor    = self::$_fieldset[Transaction_Field::SUB_VALUE];
+      $value_accessor = self::$_fieldset[Transaction_Field::VALUE];
 
+      foreach($this->_fields as $field){
+        if(
+              $field[$field_accessor] == $field_name
+          &&  $field[$vm_accessor]    == $multi_value
+          &&  $field[$sm_accessor]    == $sub_value
+        ){
+          $value = $field[$value_accessor];
+          break;
+        }
+      }
+
+      return $value;
+    }
     /**
      * Creates a data content string
      *

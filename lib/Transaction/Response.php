@@ -247,6 +247,20 @@
 
       return $success_type;
     }
+
+    /**
+     * Fetches for a value of a given field
+     *
+     * @param string  $field        the transaction response field name
+     * @param int     $multi_value  multi value number
+     * @param int     $sub_value    sub-value number
+     * @returns $value
+     *
+     */
+    public function fetch($field_name, $multi_value=1, $sub_value=1){
+      $value = $this->fields->fetch($field_name, $multi_value, $sub_value);
+      return $value;
+    }
   }
 ?>
 
