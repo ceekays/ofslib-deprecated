@@ -15,6 +15,26 @@
   class Transaction_Response extends OFSConnector {
 
     /**
+     * success indicator constants for a transaction response
+     *
+     */
+    const SUCCESSFUL_TRANSACTION  = '7ae71c9e-0789-4c09-ae85-33122d3bfe0a';
+    const ERROR_ENCOUNTERED       = '41f695d7-5a09-446e-b053-150c14279d51';
+    const OVERRIDE_ENCOUNTERED    = '61ad2388-04f1-4b72-a254-8a69b2267e3a';
+    const SYSTEM_IS_OFFLINE       = 'ae6688b8-4206-40b9-9489-1586a579fc46';
+
+    /**
+     * Holds a list of the actual success indicators
+     * @var $_success_indicators
+     */
+    private static $_success_indicators = array(
+      Transaction_Response::SUCCESSFUL_TRANSACTION  =>  1,
+      Transaction_Response::ERROR_ENCOUNTERED       => -1,
+      Transaction_Response::OVERRIDE_ENCOUNTERED    => -2,
+      Transaction_Response::SYSTEM_IS_OFFLINE       => -3,
+    );
+
+    /**
      * Holds a list of fields that are forbidden from modifying
      * @var $_forbidden_fields
      */
