@@ -180,6 +180,11 @@
           $field['multi_value'],
           $field['sub_value']
         );
+
+        if('DUPLICATE.TRAP' == $field['field']){
+          $this->has_error    = true;
+          $this->is_duplicate = true;
+        }
       }
 
       return $this;
