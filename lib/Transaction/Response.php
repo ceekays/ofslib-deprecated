@@ -272,6 +272,15 @@
       $value = $this->fields->fetch($field_name, $multi_value, $sub_value);
       return $value;
     }
+
+    /**
+     * Sets error flag and initializes the error message
+     *
+     */
+    private function set_error_details(){
+      $this->has_error      = true;
+      $this->error_message  = $this->message;
+    }
   }
 ?>
 
