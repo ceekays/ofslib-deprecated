@@ -185,6 +185,44 @@
       return $this;
     }
 
+    /**
+     * Sets header details: transaction_id, message_id and success_indicator
+     *
+     * @param string $record_id     the actual transaction id
+     * @param string $msg_id        the message id
+     * @param string $success_flag  the success indicator
+     * @returns $this object
+     *
+     */
+    private function set_header_details($record_id, $msg_id, $success_flag){
+      $this->transaction_id     = $record_id;
+      $this->message_id         = $msg_id;
+      $this->success_indicator  = $success_flag;
+
+      switch($this->success_indicator_type()){
+        case Transaction_Response::SUCCESSFUL_TRANSACTION:
+          $this->has_error    = false;
+          $this->has_override = false;
+        break;
+
+        case Transaction_Response::ERROR_ENCOUNTERED:
+          $this->has_error    = true;
+          $this->has_override = false;
+        break;
+
+        case Transaction_Response::OVERRIDE_ENCOUNTERED:
+          $this->has_error    = false;
+          $this->has_override = true;
+        break;
+
+        case Transaction_Response::SYSTEM_IS_OFFLINE:
+          $this->has_error    = true;
+          $this->has_override = false;
+        break;
+      }
+
+      return $this;
+    }
   }
 ?>
 
