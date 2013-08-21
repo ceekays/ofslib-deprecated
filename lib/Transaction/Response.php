@@ -69,6 +69,12 @@
     private $_has_override = false;
 
     /**
+     * Holds status as to wther the response is cached
+     * @var $_is_cached
+     */
+    private $_is_cached   = false;
+
+    /**
      * Holds the raw response message
      * @var $_response
      */
@@ -141,11 +147,11 @@
       $start    = strpos($this->message, ',');
 
       if(($start === false))
-        $hash = $this->get_error_details();
+        $this->set_error_details();
       else
-        $hash = $this->extract_response_details();
+        $this->extract_response_details();
 
-      return $hash;
+    $this->_is_cached = true;
     }
 
     /**
@@ -184,6 +190,7 @@
         if('DUPLICATE.TRAP' == $field['field']){
           $this->has_error    = true;
           $this->is_duplicate = true;
+          $this->error_message = "DUPLICATE TRAP";
         }
       }
 
@@ -258,6 +265,10 @@
      *
      */
     public function fetch($field_name, $multi_value=1, $sub_value=1){
+      if(false == $this->_is_cached){
+        $this->to_hash();
+      }
+
       $value = $this->fields->fetch($field_name, $multi_value, $sub_value);
       return $value;
     }
