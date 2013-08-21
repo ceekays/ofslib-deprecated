@@ -38,13 +38,35 @@
      * Holds a list of fields that are forbidden from modifying
      * @var $_forbidden_fields
      */
-    private static $_forbidden_fields = array('message', 'text');
+    private static $_forbidden_fields = array(
+      'has_error',
+      'has_override',
+      'message',
+      'text'
+    );
 
     /**
      * Holds a list of accessible fields
      * @var $_options_list
      */
-    private static $_options_list = array('message', 'text');
+    private static $_options_list = array(
+      'has_error',
+      'has_override',
+      'message',
+      'text'
+    );
+
+    /**
+     * Determines whether the response has an error
+     * @var $_has_error
+     */
+    private $_has_error = false;
+
+    /**
+     * Determines whether the response has an override
+     * @var $_has_override
+     */
+    private $_has_override = false;
 
     /**
      * Holds the raw response message
@@ -82,6 +104,14 @@
         throw new OFSException(SyntaxError::WRONG_DATA, $option);
 
       switch($option){
+        case 'has_error':
+          $value = $this->_has_error;
+        break;
+
+        case 'has_override':
+          $value = $this->_has_override;
+        break;
+
         case    'text':
         case 'message':
           $value = $this->_response;
@@ -151,6 +181,7 @@
           $field['sub_value']
         );
       }
+
       return $this;
     }
 
