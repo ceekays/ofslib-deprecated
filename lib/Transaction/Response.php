@@ -87,12 +87,13 @@
       $matches  = null;
       $hash     = null;
 
-      preg_match_all('/([\,\/])/', $this->message, $matches);
+      $resplen  = strlen($this->message);
+      $start    = strpos($this->message, ',');
 
-      if(count($matches[0]) >= 3)
-        $hash = $this->extract_response_details();
-      else
+      if(($start === false))
         $hash = $this->get_error_details();
+      else
+        $hash = $this->extract_response_details();
 
       return $hash;
     }
@@ -104,7 +105,7 @@
      */
     private function extract_response_details(){
       $start  = strpos($this->message, ',');
-      $header = explode('/',substr($this->message, 0, $start));
+      $header = explode('/', substr($this->message, 0, $start));
       $data   = explode(',', substr($this->message, $start + 1));
 
       $this->set_header_details($header[0], $header[1], $header[2]);
