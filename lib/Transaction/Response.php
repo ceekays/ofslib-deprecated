@@ -223,6 +223,25 @@
 
       return $this;
     }
+
+    /**
+     * Returns a success indicator type as defined by $_success_indicators list
+     *
+     * @returns $success_type the type of success indicator
+     *
+     */
+    public function success_indicator_type(){
+      $success_type = null;
+
+      foreach(self::$_success_indicators as $success_flag_key => $value){
+        if($value == $this->success_indicator){
+          $success_type = $success_flag_key;
+          break;
+        }
+      }
+
+      return $success_type;
+    }
   }
 ?>
 
